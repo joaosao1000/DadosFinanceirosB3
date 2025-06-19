@@ -14,7 +14,7 @@ Projeto para extração, limpeza, análise e visualização de dados históricos
 ## Tecnologias
 
 - Python 3  
-- Bibliotecas: pandas, requests, BeautifulSoup, matplotlib  
+- Bibliotecas: pandas, requests, Selenium, matplotlib  
 - Ambiente: Jupyter Notebook / VS Code
 
 ## Funcionalidades
