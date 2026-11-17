@@ -1,26 +1,52 @@
-# Analise de ações na B3 dos últimos 5 anos
+# Análise de ações da B3
 
-Projeto para extração, limpeza, análise e visualização de dados históricos da bolsa brasileira (B3) utilizando dados do Yahoo Finance.
+Pipeline em Python que extrai cotações históricas de ações da B3, trata os
+dados, calcula indicadores técnicos e gera as visualizações.
 
-## Objetivo
+## Exemplo de saída
 
-- Extrair dados históricos de ações da B3 via web scraping.
-- Limpar e transformar os dados para análise.
-- Calcular indicadores financeiros como Médias Móveis Exponenciais (EMA).
-- Visualizar dados e indicadores para facilitar tomada de decisão.
-- Salvar dados em CSV e gráficos em imagens para uso futuro.
-- Preparar dados para possível uso em bancos de dados na nuvem (ex.: Azure).
+![Gráfico de preço com EMAs](assets/exemplo-petr4.png)
 
-## Tecnologias
+> PETR4 — preço de fechamento com médias móveis exponenciais de 9, 21 e 50 dias
 
-- Python 3  
-- Bibliotecas: pandas, requests, Selenium, matplotlib  
-- Ambiente: Jupyter Notebook / VS Code
+## O que faz
 
-## Funcionalidades
+Você informa o ticker, e o pipeline:
 
-- Extração automatizada de dados históricos para um certo ticker inserido pelo usuário.  
-- Tratamento e limpeza dos dados (conversão de tipos, remoção de valores inválidos).  
-- Cálculo de indicadores técnicos financeiros.  
-- Geração de gráficos com os preços e indicadores.  
-- Exportação dos dados tratados para CSV e gráficos para PNG.
+1. Extrai o histórico de cotações
+2. Trata os dados — conversão de tipos, remoção de registros inválidos,
+   tratamento de pregões sem negociação
+3. Calcula médias móveis exponenciais
+4. Gera o gráfico de preço com os indicadores sobrepostos
+5. Exporta a série tratada em CSV e o gráfico em PNG
+
+## Como rodar
+
+```bash
+git clone https://github.com/joaosao1000/<repo>.git
+cd <repo>
+pip install -r requirements.txt
+python main.py
+```
+
+Digite o ticker quando solicitado (ex.: `PETR4.SA`).
+
+## Decisões de projeto
+
+**Por que scraping com Selenium.** [PREENCHER — ver observação abaixo]
+
+**Tratamento de dias sem pregão.** Feriado e fim de semana não geram registro,
+então a série não é contínua em dias corridos. O cálculo das EMAs usa a
+sequência de pregões, não o calendário.
+
+## O que eu faria diferente hoje
+
+- Trocar o scraping por uma biblioteca de dados de mercado — menos frágil a
+  mudança de layout e muito mais rápido
+- Adicionar cache local pra não reextrair a mesma série a cada execução
+- Permitir comparação entre múltiplos tickers na mesma execução
+- Cobrir o cálculo dos indicadores com testes
+
+## Stack
+
+`Python 3` · `pandas` · `Selenium` · `requests` · `matplotlib`
