@@ -3,12 +3,6 @@
 Pipeline em Python que extrai cotações históricas de ações da B3, trata os
 dados, calcula indicadores técnicos e gera as visualizações.
 
-## Exemplo de saída
-
-![Gráfico de preço com EMAs](assets/exemplo-petr4.png)
-
-> PETR4 — preço de fechamento com médias móveis exponenciais de 9, 21 e 50 dias
-
 ## O que faz
 
 Você informa o ticker, e o pipeline:
